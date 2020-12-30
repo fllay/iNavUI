@@ -1,0 +1,19 @@
+.card{
+ border-radius: 10%;
+ opacity: 0.5;
+}
+
+.content-wrapper{
+ /*background-image: url("../../assets/img/1.jpg");*/
+ background-color: rgb(102, 105, 105);
+ background-repeat: no-repeat;
+}
+
+.vertical-space{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.container{
+    border:solid gray;
+    text-align: center;
+}

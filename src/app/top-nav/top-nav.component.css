@@ -1,0 +1,33 @@
+a:hover{
+    cursor: pointer;
+}
+.fa-car{
+    color: rgb(4, 107, 9);
+}
+.fa-user{
+    color: rgb(4, 107, 9);
+}
+
+button{
+    margin-top: 8px;  
+    background-color:rgba(78, 122, 243, 0.575);
+    height: 34px;
+    text-align: center;
+    color: white;
+}
+button:hover{
+    background-color:aqua;
+}
+
+.connected{
+    background-color:rgb(21, 110, 3);
+}
+
+input{
+    margin-top: 8px;  
+    border-radius: 5px;
+  
+}
+.port{
+    width:60px;
+}

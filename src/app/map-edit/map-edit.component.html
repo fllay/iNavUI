@@ -1,0 +1,16 @@
+<div class="content-wrapper">
+    <div class = "row">
+<div class="col-12">
+    <image-drawing 
+    [src] = "img_src"
+    outputMimeType="'image/jpeg'"
+    (save)="save($event)"
+    (cancel)="cancel()">
+</image-drawing>
+</div>
+<div style="display: none;">
+<div  id="map3d">
+</div>
+</div>
+</div>
+</div>

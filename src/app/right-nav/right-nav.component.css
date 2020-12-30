@@ -1,0 +1,151 @@
+  /* gaugue meter*/
+
+  
+  .GaugeMeter {
+    position: relative;
+    margin-left:20px;
+    margin-top:20px;
+    text-Align: center;
+    overflow: hidden;
+    cursor: none;
+}
+
+.GaugeMeter SPAN,
+.GaugeMeter B {
+    margin: 0 10%;
+    width: 80%;
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+    color: rgba(0, 0, 0, .8);
+    font-weight: 100;
+    font-Family: "Open Sans", Arial;
+    overflow: hidden;
+    white-space: none;
+    text-overflow: ellipsis;
+}
+
+.GaugeMeter[data-style="Semi"] B {
+    margin: 0 10%;
+    width: 100%;
+}
+
+.GaugeMeter S,
+.GaugeMeter U {
+    text-Decoration: None;
+    font-Size: .5em;
+    opacity: .5;
+}
+#draggable{
+    height: 10px;
+    text-align:center;
+    margin-top:60px;
+}
+#joystick{
+    margin: auto;
+}
+
+.main-sidebar{
+    background-color:rgba(10, 26, 173, 0.712);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 27px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 30px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .nav-toggle{
+    color:white;
+    margin-left:5px;
+  }
+
+  .nav-font{
+    color:rgb(220, 229, 231);
+  }
+
+  .nav-font :hover{
+    color:white;
+    background-color:#044b0e;
+  }
+  i{
+      color:rgb(223, 243, 242);
+  }
+
+
+  /* gaugue meter*/
+
+
+a:hover{
+  cursor: pointer;
+}
+
+
+button{
+  width:70px;
+  word-spacing: 10px;
+}
+
+hr{
+  width:80px;
+}
+li, a{
+   text-decoration: none;
+ }
+
+ a:hover{
+   cursor: pointer;
+ }

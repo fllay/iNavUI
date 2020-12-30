@@ -1,0 +1,21 @@
+<div class="wrapper">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <!-- Login Form -->
+          <form #ipFrom>
+            <input type="text"  class="fadeIn second" name="ip" [(ngModel)]="robot_ip">
+            <input type="text"  class="fadeIn third" name="port" [(ngModel)]="robot_port" >
+            <input type="submit" class="fadeIn fourth" value="Save" (click) = "save_robot_ip()">
+          </form>
+          <!-- Remind Passowrd -->
+          <div id="formFooter">
+            <a class="underlineHover" href="#">Robot IP Address and Port</a>
+          </div>
+    
+        </div>
+      </div>
+      <div style="height: 390px;">
+    
+      </div>
+    </div>
+

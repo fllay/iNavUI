@@ -1,0 +1,99 @@
+<div class="contents-wrapper">
+<aside class="control-sidebar control-sidebar-dark" >
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li><a href="#control-sidebar-home-tab" data-toggle="tab" (click)="load_blockly()"(click)="load_map()"><i class="material-icons">pin_drop</i></a></li>
+      <li><a href="#edit-load-map" data-toggle="tab" (click)="load_map()"> <i class="material-icons">border_color</i></a></li>
+      <li><a href="#control-sidebar-settings-tab" data-toggle="tab" (click) = "createjoy()"><i class="material-icons" >gamepad</i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content" >
+      <!-- Home tab content -->
+      <div class="tab-pane" id="control-sidebar-home-tab">
+      <h4>Running</h4>
+        <div class="container">
+          <div class="row">
+              <button type="button" class="btn btn-primary" onclick="loadMap()">
+                  Reload
+              </button>
+              <button type="button" class="btn btn-danger" onclick="deleteAmap()">
+                  Delete
+              </button>
+          </div>
+          <br>
+          <br>
+          <div class="span3">
+              <table id="mapTable" data-click-to-select="true" data-single-select="true">
+                  <thead>
+                      <tr>
+                          <th data-field="state" data-checkbox="true"></th>
+                          <th data-field="name">Map Name</th>
+                      </tr>
+                  </thead>
+              </table>
+          </div>
+          <br>
+          <div class="row">
+              <button type="button" class="btn btn-danger" onclick="deleteAwaypoint()">
+                  Delete
+              </button>
+          </div>
+          <br>
+          <div class="span5">
+              <table id="waypointTable" data-click-to-select="true" data-single-select="true">
+                  <thead>
+                      <tr>
+                          <th data-field="state" data-checkbox="true"></th>
+                          <th data-field="name">Waypoint Name</th>
+                      </tr>
+                  </thead>
+              </table>
+          </div>
+
+
+          <!--<button id="set_map_btn" class="btn btn-secondary">set map</button>-->
+          <br>
+          <div class="row">
+              <label class="switch">
+                <input type="checkbox"  id="switch_nav" onclick = "startSLAM()">
+                <span class="slider round"></span>
+              </label><label class="nav-toggle">NAV</label>
+          </div>
+          <div class="row">
+              <button type="button" class="btn btn-primary" onclick="sendGoal()">
+                  Go
+              </button>
+              <div id="nav_status">Satus</div>
+          </div>
+          <!--div class="row">
+              <canvas id="imuChart" width="1600" height="900"></canvas>
+          </div-->
+
+      </div>
+      </div><!-- /.tab-pane -->
+      <!-- Stats tab content -->
+      <div class="tab-pane" id="edit-load-map">
+          <ul class="sidebar-menu">
+               <li><h4>Map editing</h4></li>
+               <li class="treeview" *ngFor="let item of map_name"><a (click) = "get_edit_map(item.name)">{{item.name}}</a></li>
+            </ul>
+      </div><!-- /.tab-pane -->
+      <!-- Settings tab content -->
+      <div class="tab-pane" id="control-sidebar-settings-tab">
+        <!--div class="row">
+          <canvas id="imuChart" width="200px" height="100px" style="background-color: rgb(219, 231, 231);"></canvas>
+        </div-->
+        <h4>Manual control</h4>
+        <div class = "from-group" style="height: 600px;">
+          <div class="GaugeMeter" id="GaugeMeter_1" data-width="20" data-total="30" data-style="Semi" data-showvalue=true></div>
+        <div id = "draggable">
+            <div id="joy-div">
+             <i class="fa fa-arrows-alt"></i>
+             <div id="joystick"></div>
+           </div>
+          </div>
+      </div><!-- /.tab-pane -->
+  </div>
+</div>
+  </aside><!-- /.control-sidebar -->
+</div>

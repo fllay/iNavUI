@@ -1,0 +1,12 @@
+button{
+    width:80px;
+    height:40px;
+    border-radius: 5px;
+    margin-top:5px;
+}
+.job-control{
+    position:absolute;
+    top:230px;
+    left:50px;
+    z-index:+90;
+}

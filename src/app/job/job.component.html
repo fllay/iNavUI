@@ -1,0 +1,26 @@
+<div class = "content-wrapper">
+        <div class="row">
+            <div id="blocklyArea" class="col-lg-12" style="height:94vh;width:88vw; background-color: cyan;">
+                <div id="blocklyDiv" style="width: 100vw; height: 94vh; background-color: blue;">
+                </div>
+                
+                <div class="job-control">
+                    <br>
+                    <div class="row">
+                    <button type="button" class="btn btn-success" value="run" onclick="runBlockly(this)"
+                    id="run_blockly">Run</button>
+                    </div>
+                    <div class="row">
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#saveBlockyModal" id="save_blockly">Save</button>
+                    </div>
+                    <div class="row">
+                    <button type="button" class="btn btn-warning" data-toggle="modal"
+                    data-target="#loadBlockyModal" onclick="getFile()" id="load_blockly">Load</button>
+                </div>
+                </div>
+            </div>
+            
+        </div>
+        
+</div>

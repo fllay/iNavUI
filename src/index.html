@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>InavUi</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/css/font-awesome.css">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="./assets/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="./assets/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="./assets/plugins/iCheck/flat/blue.css">
+  <link rel="stylesheet" href="./assets/plugins/morris/morris.css">
+  <link rel="stylesheet" href="./assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <link rel="stylesheet" href="./assets/plugins/datepicker/datepicker3.css">
+  <link rel="stylesheet" href="./assets/plugins/daterangepicker/daterangepicker-bs3.css">
+  <link rel="stylesheet" href="./assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="./assets/ros/css/Chart.min.css">
+  <link rel="stylesheet" href="./assets/css/modal.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/icon/material_icon.css">
+
+  <link rel="stylesheet" href="./assets/ros/css/bootstrap-table.min.css">
+  <link rel="stylesheet" href="./assets/ros/css/bootstrap-toggle.min.css">
+  <link rel="stylesheet" href="./assets/ros/css/jquery.dataTables.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body  class="hold-transition skin-purple-light  sidebar-mini mat-typography" >
+  <div class="wrapper">
+  <app-root></app-root>
+  <div id="openModal" class="modalDialog" style="display:none"><!--------------------WiFi Setting Modal-->
+    <div>	<a href="#close" title="Close" class="close">X</a>
+      <form class="form-inline">
+        <div class="form-group">
+          <input type="text" id="Robot_ip" class="form-control mx-sm-3" placeholder = "Robot IP" value="192.168.1.100">
+          <input type="text" id="Robot_port" class="form-control" style="width:100px" placeholder = "Port" value = "9090">
+          <br><br>
+          <button type="submit" class="btn btn-primary mb-2">Save</button>
+        </div>
+    </div>
+</div>
+<xml id="toolbox" style="display: none">
+    <category name="Logic" colour="%{BKY_LOGIC_HUE}">
+        <block type="controls_if"></block>
+        <block type="logic_compare"></block>
+        <block type="logic_operation"></block>
+        <block type="logic_negate"></block>
+        <block type="logic_boolean"></block>
+        <block type="logic_null"></block>
+        <block type="logic_ternary"></block>
+    </category>
+    <category name="Loop" colour="%{BKY_LOOPS_HUE}">
+        <block type="controls_repeat_ext">
+            <value name="TIMES">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="controls_whileUntil"></block>
+        <block type="controls_for">
+            <value name="FROM">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="TO">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
+            </value>
+            <value name="BY">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="controls_forEach"></block>
+        <block type="controls_flow_statements"></block>
+    </category>
+    <category name="Math" colour="%{BKY_MATH_HUE}">
+        <block type="math_number">
+            <field name="NUM">123</field>
+        </block>
+        <block type="math_arithmetic">
+            <value name="A">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="B">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="math_single">
+            <value name="NUM">
+                <shadow type="math_number">
+                    <field name="NUM">9</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="math_trig">
+            <value name="NUM">
+                <shadow type="math_number">
+                    <field name="NUM">45</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="math_constant"></block>
+        <block type="math_number_property">
+            <value name="NUMBER_TO_CHECK">
+                <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="math_round">
+            <value name="NUM">
+                <shadow type="math_number">
+                    <field name="NUM">3.1</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="math_on_list"></block>
+        <block type="math_modulo">
+            <value name="DIVIDEND">
+                <shadow type="math_number">
+                    <field name="NUM">64</field>
+                </shadow>
+            </value>
+            <value name="DIVISOR">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="math_constrain">
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM">50</field>
+                </shadow>
+            </value>
+            <value name="LOW">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="HIGH">
+                <shadow type="math_number">
+                    <field name="NUM">100</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="math_random_int">
+            <value name="FROM">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="TO">
+                <shadow type="math_number">
+                    <field name="NUM">100</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="math_random_float"></block>
+        <block type="math_atan2">
+            <value name="X">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="Y">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+    <category name="Text" colour="%{BKY_TEXTS_HUE}">
+        <block type="text"></block>
+        <block type="text_join"></block>
+        <block type="text_append">
+            <value name="TEXT">
+                <shadow type="text"></shadow>
+            </value>
+        </block>
+        <block type="text_length">
+            <value name="VALUE">
+                <shadow type="text">
+                    <field name="TEXT">abc</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="text_isEmpty">
+            <value name="VALUE">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="text_indexOf">
+            <value name="VALUE">
+                <block type="variables_get">
+                    <field name="VAR">{textVariable}</field>
+                </block>
+            </value>
+            <value name="FIND">
+                <shadow type="text">
+                    <field name="TEXT">abc</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="text_charAt">
+            <value name="VALUE">
+                <block type="variables_get">
+                    <field name="VAR">{textVariable}</field>
+                </block>
+            </value>
+        </block>
+        <block type="text_getSubstring">
+            <value name="STRING">
+                <block type="variables_get">
+                    <field name="VAR">{textVariable}</field>
+                </block>
+            </value>
+        </block>
+        <block type="text_changeCase">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">abc</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="text_trim">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">abc</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="text_print">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">abc</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="text_prompt_ext">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">abc</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+    <category name="List" colour="%{BKY_LISTS_HUE}">
+        <block type="lists_create_with">
+            <mutation items="0"></mutation>
+        </block>
+        <block type="lists_create_with"></block>
+        <block type="lists_repeat">
+            <value name="NUM">
+                <shadow type="math_number">
+                    <field name="NUM">5</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="lists_length"></block>
+        <block type="lists_isEmpty"></block>
+        <block type="lists_indexOf">
+            <value name="VALUE">
+                <block type="variables_get">
+                    <field name="VAR">{listVariable}</field>
+                </block>
+            </value>
+        </block>
+        <block type="lists_getIndex">
+            <value name="VALUE">
+                <block type="variables_get">
+                    <field name="VAR">{listVariable}</field>
+                </block>
+            </value>
+        </block>
+        <block type="lists_setIndex">
+            <value name="LIST">
+                <block type="variables_get">
+                    <field name="VAR">{listVariable}</field>
+                </block>
+            </value>
+        </block>
+        <block type="lists_getSublist">
+            <value name="LIST">
+                <block type="variables_get">
+                    <field name="VAR">{listVariable}</field>
+                </block>
+            </value>
+        </block>
+        <block type="lists_split">
+            <value name="DELIM">
+                <shadow type="text">
+                    <field name="TEXT">,</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="lists_sort"></block>
+    </category>
+
+    <sep></sep>
+    <category name="Variables" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+    <category name="Functions" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+    <category name="AGV Control" colour="%{BKY_LISTS_HUE}">
+        <block type="agv_init"></block>
+        <block type="move_to"></block>
+        <!--<block type="move_to_preset"></block>-->
+        <block type="rospy_loop"></block>
+        <block type="sleep_type"></block>
+    </category>
+</xml>
+
+<div class="modal fade" id="saveMapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                      aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="exampleModalLabel">Enter map name</h4>
+          </div>
+          <div class="modal-body">
+              <form role="form">
+
+                  <div class="form-group">
+                      <label for="first-name" class="control-label"></label>
+                      <input type="text" class="form-control" id="map_name" placeholder="Map name">
+                  </div>
+
+
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="saveMap()"> Save</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="saveBlockyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                      aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="exampleModalLabel">Enter file name</h4>
+          </div>
+          <div class="modal-body">
+              <form role="form">
+
+                  <div class="form-group">
+                      <label for="first-name" class="control-label"></label>
+                      <input type="text" class="form-control" id="file_name" placeholder="File name">
+                  </div>
+
+
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="cancel-blockly-btn"
+                  data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="saveBlockly()"> Save</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="loadBlockyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                      aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="exampleModalLabel">Choose file</h4>
+          </div>
+          <div class="modal-body">
+              <div>
+                  <table class="table" id="filelist">
+                  </table>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="cancel-load-blockly-btn"
+                  data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" disabled="true" id="load-blockly-btn"
+                  onclick="loadBlockly()">
+                  Load</button>
+          </div>
+
+      </div>
+  </div>
+
+</div>
+<script src="./assets/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="./assets/jquery/jquery.ui.min.js"></script>
+
+  <script>
+    var robot_ip = localStorage.getItem("robot_ip");
+    var robot_port = localStorage.getItem("robot_port");
+    var Robot_ip = document.getElementById("Robot_ip");
+    var Robot_port = document.getElementById("Robot_port");
+    Robot_ip.value = robot_ip;
+    Robot_port = robot_port;
+
+    $.widget.bridge('uibutton', $.ui.button);
+    $( function() {
+      $( "#draggable" ).draggable();
+    } );
+
+  </script>
+  <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <script src="./assets/plugins/morris/morris.min.js"></script>
+  <script src="./assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+  <script src="./assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+  <script src="./assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+  <script src="./assets/plugins/knob/jquery.knob.js"></script>
+  <script src="./assets/plugins/daterangepicker/daterangepicker.js"></script>
+  <script src="./assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+  <script src="./assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+  <script src="./assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <script src="./assets/plugins/fastclick/fastclick.min.js"></script>
+  <script src="./assets/dist/js/app.min.js"></script>
+  <script src="./assets/dist/js/demo.js"></script>
+
+  <script src="./assets/ros/js/dataTables.dataTables.min.js"></script>
+  <script src="./assets/ros/js/bootstrap-table.min.js"></script>
+  <script src="./assets/ros/js/Chart.min.js"></script>
+  <script src="./assets/ros/scripts/GaugeMeter.js"></script>
+  <script src="./assets/ros/scripts/gauge.js"></script>
+
+  <script type="text/javascript" src="./assets/ros/scripts/easeljs.min.js"></script>
+  <script type="text/javascript" src="./assets/ros/scripts/eventemitter2.min.js"></script>
+  <script type="text/javascript" src="./assets/ros/scripts/roslib.min.js"></script>
+  <script type="text/javascript" src="./assets/ros/scripts/ros2d.min.js"></script>
+  <script type="text/javascript" src="./assets/ros/scripts/nav2d.js"></script>
+  <script type="text/javascript" src="./assets/ros/scripts/ros3d.min.js"></script>
+
+  <script type="text/javascript" src="./assets/ros/scripts/blockly/blockly_compressed.js"></script>
+  <script type="text/javascript" src="./assets/ros/scripts/blockly/blocks_compressed.js"></script>
+  <script type="text/javascript" src="./assets/ros/scripts/blockly/python_compressed.js"></script>
+  <script type="text/javascript" src="./assets/ros/scripts/blockly/msg/js/en.js"></script>
+  <script type="text/javascript" src="./assets/ros/scripts/blockly/msg/messages.js"></script>
+
+  <!--script src="./assets/js/joystick.js"></script-->
+  <script src="./assets/ros/scripts/axios.min.js"></script>
+  <script src="./assets/ros/js/nipplejs.min.js"></script>
+</body>
+</html>

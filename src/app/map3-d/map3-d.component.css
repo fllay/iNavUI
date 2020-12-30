@@ -1,0 +1,12 @@
+
+i{
+    color:#fff;
+    float:right;
+}
+
+.disappear{
+    display:none;
+}
+.appear{
+    display:block;
+}

@@ -1,0 +1,36 @@
+<header class="main-header" style = "background-color: rgba(255, 255, 0, 0.678);">
+    <a [routerLink]="['/home']" routerLinkActive="router-link-active" class="logo hidden-xs"  style = "background-color: rgba(10, 27, 173, 0.795);">
+      <span class="logo-mini"><b>I</b>NV</span>
+      <span class="logo-lg"><b>INAV</b>/UI</span>
+    </a>
+    <nav class="navbar navbar-inverse navbar-static-top"   style = "background-color:rgba(235, 154, 3, 0.658);">
+      <a class="material-icons" style ="margin-top:7px;font-size:34px;color:white;" data-toggle="offcanvas" role="button">menu
+      </a>
+      <div class="navbar-custom-menu" >
+        <ul class="nav navbar-nav">
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            </a>
+          </li>
+          <li class = "hidden-xs "><input  class = "form-control" type="text" [(ngModel)]="robot_ip"></li>
+          <li class = "hidden-xs "><input  class = "form-control port" type="text" [(ngModel)]="robot_port"></li>
+          <li>
+          <button  class="btn hidden-xs "  id="btn_connect">Connect</button>
+          </li>
+          <li>
+            <a [routerLink]="['/login']" routerLinkActive="router-link-active" >
+              <i class="material-icons" style="font-size: 15px;color:greenyellow">person_outline</i><span> Login</span>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/logout']" routerLinkActive="router-link-active" >
+              <i class="material-icons" style="font-size: 15px;color:gray">person_outline</i><span> Logout</span>
+            </a>
+          </li>
+          <li>
+            <a data-toggle="control-sidebar"><i class="material-icons" style="font-size:15px">pin_drop</i> Navigation</a>
+        </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
