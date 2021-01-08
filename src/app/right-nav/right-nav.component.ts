@@ -40,10 +40,17 @@ export class RightNavComponent implements OnInit {
   }
 
   get_edit_map(str:any){
-      this.http.post<any>('http://192.168.1.197:5000/getEditMap', str).subscribe(res=>{
-        console.log(res);
-      });
-  }
+      this.http.post<any>('http://192.168.1.197:5000/selectMap', str).subscribe(res=>{
+        console.log(res.message);
+        alert(res);
+    },err=>{
+      console.log('Error: ' + err.error);
+      console.log('Name: ' + err.name);
+      console.log('Message: ' + err.message);
+      console.log('Status: ' + err.status);
+    }
+    )
+   }
 
   onNgModelChange(event:any){
 

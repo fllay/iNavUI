@@ -17,7 +17,8 @@ import { MapEditComponent } from './map-edit/map-edit.component';
 import { ImageDrawingModule } from 'ngx-image-drawing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoutComponent } from './logout/logout.component';
-
+import { FileSaverModule } from 'ngx-filesaver';
+import { MapuploadComponent } from './mapupload/mapupload.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LogoutComponent } from './logout/logout.component';
     SaveMapComponent,
     HomeComponent,
     MapEditComponent,
-    LogoutComponent
+    LogoutComponent,
+    MapuploadComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { LogoutComponent } from './logout/logout.component';
     FormsModule,
     ImageDrawingModule,
     BrowserAnimationsModule,
+    FileSaverModule
   ],
   providers: [],
   bootstrap: [AppComponent]

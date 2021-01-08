@@ -1,16 +1,9 @@
 <div class="content-wrapper">
-    <div class = "row">
-<div class="col-12">
+    <div class = "container" #getsize>
     <image-drawing 
     [src] = "img_src"
     outputMimeType="'image/jpeg'"
     (save)="save($event)"
-    (cancel)="cancel()">
-</image-drawing>
-</div>
-<div style="display: none;">
-<div  id="map3d">
-</div>
-</div>
+    (cancel)="cancel()"></image-drawing>
 </div>
 </div>
