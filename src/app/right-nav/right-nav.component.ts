@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import {edit_img_src} from '../services'
 declare function createJoystick():any;
 declare function loadMap():any;
 declare function init_blockly():any;
@@ -16,10 +16,10 @@ export class RightNavComponent implements OnInit {
    blockly= init_blockly;
    map_name =[{name:""}];
    selected:any;
+   edit_src= edit_img_src;
   constructor(
     private http: HttpClient
   ) { }
-
   createjoy(){
     this.create_joy();
     console.log("create joy");
@@ -58,6 +58,7 @@ export class RightNavComponent implements OnInit {
   ngOnInit(): void {
   this.create_joy();
   this.load_maps();
+
   }
 
 }

@@ -28,6 +28,7 @@
     "file-saver": "^2.0.5",
     "ngx-filesaver": "^11.0.0",
     "ngx-image-drawing": "^1.2.4",
+    "ngx-uploader": "^11.0.0",
     "rxjs": "~6.6.0",
     "systemjs": "^6.8.2",
     "tslib": "^2.0.0",

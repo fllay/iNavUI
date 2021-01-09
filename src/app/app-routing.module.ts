@@ -8,6 +8,7 @@ import { SaveMapComponent } from './save-map/save-map.component';
 import {HomeComponent} from './home/home.component';
 import {MapEditComponent}from './map-edit/map-edit.component';
 import {LogoutComponent} from './logout/logout.component';
+import {MapuploadComponent} from './mapupload/mapupload.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'map-edit',component:MapEditComponent},
   {path:'logout',component:LogoutComponent},
-  {path:'home',component:HomeComponent}
+  {path:'home',component:HomeComponent},
+  {path:'mapupload',component:MapuploadComponent}
 ];
 
 @NgModule({

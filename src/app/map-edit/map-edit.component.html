@@ -1,9 +1,13 @@
 <div class="content-wrapper">
-    <div class = "container" #getsize>
+    <div class = "container">
     <image-drawing 
-    [src] = "img_src"
+    [enableLoadAnotherImage]="true" 
+    [enableRemoveImage]="true"
+    [src] = "img_file"
     outputMimeType="'image/jpeg'"
+    [drawingSizes]="{ small: 0.5, medium: 10, large: 25}"
     (save)="save($event)"
-    (cancel)="cancel()"></image-drawing>
+    (cancel)="cancel()"
+    ></image-drawing>
 </div>
 </div>

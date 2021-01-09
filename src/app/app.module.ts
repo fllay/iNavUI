@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoutComponent } from './logout/logout.component';
 import { FileSaverModule } from 'ngx-filesaver';
 import { MapuploadComponent } from './mapupload/mapupload.component';
+import { NgxUploaderModule } from 'ngx-uploader';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MapuploadComponent } from './mapupload/mapupload.component';
     FormsModule,
     ImageDrawingModule,
     BrowserAnimationsModule,
-    FileSaverModule
+    FileSaverModule,
+    NgxUploaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,13 +6,13 @@
          <a href="#">
           <i class="material-icons">mouse</i>
            <span class="nav-font" >SETUP</span>
-           <i class="material-icons pull-right">trending_flat</i>
+           <span class="glyphicon pull-right">&#xe080;</span>
          </a>
          <ul class="treeview-menu">
            <li class = "treeview"><a href="#">
              <i class="fa fa-globe"></i>
              <span>Network</span>
-             <i class="material-icons pull-right">trending_flat</i>
+             <span class="glyphicon pull-right">&#xe080;</span>
            </a>
            <ul class = "treeview-menu">
              <li><a><i class="fa fa-sitemap"></i>Lan setting</a></li>
@@ -22,7 +22,7 @@
            <li class = "treeview"> <a href="#">
              <i class="fa fa-laptop"></i>
              <span>Parameter</span>
-             <i class="material-icons pull-right">trending_flat</i>
+             <span class="glyphicon pull-right">&#xe080;</span>
            </a>
            <ul class = "treeview-menu">
              <li><a><i class="fa fa-car"></i>Body dimension</a></li>
@@ -36,13 +36,13 @@
        <li class="treeview nav-font">
         <a  [routerLink]="['/map3-d']" routerLinkActive="router-link-active">
           <i class="material-icons">my_location</i><span class="nav-font"> MAP</span>
-          <i class="material-icons pull-right">trending_flat</i>
+          <span class="glyphicon pull-right">&#xe080;</span>
          </a>
          <ul class="treeview-menu">
            <li class = "treeview"><a href="#">
              <i class="fa fa-map"></i>
              <span>CREATE MAP</span>
-             <i class="material-icons pull-right">trending_flat</i>
+             <span class="glyphicon pull-right">&#xe080;</span>
            </a>
            <ul class = "treeview-menu">
              <li><label class="switch">
@@ -61,7 +61,7 @@
            <li class = "treeview nav-font"> <a href="#">
              <i class="fa fa-home"></i>
              <span>SET HOME</span>
-             <i class="material-icons pull-right">trending_flat</i>
+             <span class="glyphicon pull-right">&#xe080;</span>
            </a>
            <ul class = "treeview-menu">
             <li><label class="switch">
@@ -77,7 +77,7 @@
            <li class = "treeview nav-font"><a href="#">
              <i class="fa fa-warning"></i>
              <span>ZONE</span>
-             <i class="material-icons pull-right">trending_flat</i>
+             <span class="glyphicon pull-right">&#xe080;</span>
            </a>
            <ul class = "treeview-menu">
             <li class="treeview nav-font">
@@ -94,13 +94,13 @@
        <li class="treeview nav-font">
         <a href = "#" (click) = "show_blockly()"[routerLink]="['/job']" routerLinkActive="router-link-active" id="Programming" class="nav-link" >
           <i class="material-icons">extension</i><span class="nav-font"> JOB COMMAND</span>
-          <i class="material-icons pull-right">trending_flat</i>
+          <span class="glyphicon pull-right">&#xe080;</span>
          </a>
          <ul class="treeview-menu">
            <li class = "treeview"><a href="#">
              <i class="fa fa-save"></i>
              <span>Project</span>
-             <i class="material-icons pull-right">trending_flat</i>
+             <span class="glyphicon pull-right">&#xe080;</span>
            </a>
            <ul class = "treeview-menu">
              <li><a>Edit program</a></li>
@@ -113,13 +113,13 @@
        <li class="treeview nav-font">
          <a href="#">
           <i class="material-icons">forum</i><span class="nav-font"> COMMUNICATION</span>
-          <i class="material-icons pull-right">trending_flat</i>
+          <span class="glyphicon pull-right">&#xe080;</span>
          </a>
          <ul class="treeview-menu">
            <li class = "treeview"><a href="#">
             <i class="material-icons">usb</i>
              <span>Communication</span>
-             <i class="material-icons pull-right">trending_flat</i>
+             <span class="glyphicon pull-right">&#xe080;</span>
            </a>
            <ul class = "treeview-menu">
              <li><a>Central server</a></li>
@@ -131,13 +131,13 @@
        <li class="treeview nav-font">
          <a href="#">
           <i class="material-icons">desktop_mac</i><span class="nav-font"> MONITOR</span>
-          <i class="material-icons pull-right">trending_flat</i>
+          <span class="glyphicon pull-right">&#xe080;</span>
          </a>
          <ul class="treeview-menu">
            <li class = "treeview"><a href="#">
              <!--i class="fa fa-save"></i-->
              <span>INAV Monitor</span>
-             <i class="material-icons pull-right">trending_flat</i>
+             <span class="glyphicon pull-right">&#xe080;</span>
            </a>
            <ul class = "treeview-menu">
              <li><a>Status</a></li>
@@ -151,7 +151,7 @@
            <li class = "treeview"><a href="#">
              <!--i class="fa fa-save"></i-->
              <span>Alarm monitor</span>
-             <i class="material-icons pull-right">trending_flat</i>
+             <span class="glyphicon pull-right">&#xe080;</span>
            </a>
            <ul class = "treeview-menu">
              <li><a>Alarm logs</a></li>
@@ -162,6 +162,11 @@
        <li class="treeview nav-font">
         <a [routerLink]="['/map-edit']" routerLinkActive="router-link-active" >
           <i class="material-icons">border_color</i><span class="nav-font"> MAP EDITOR</span>
+        </a>
+      </li>
+      <li class="treeview nav-font">
+        <a [routerLink]="['/mapupload']" routerLinkActive="router-link-active" >
+          <span class="glyphicon">&#xe198;</span><span class="nav-font"> MAP UPLOAD</span>
         </a>
       </li>
      </ul>
