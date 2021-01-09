@@ -33,14 +33,16 @@ export class RightNavComponent implements OnInit {
   }
 
   load_maps(){
-  this.http.post<any>('http://192.168.1.197:5000/loadMap', "test").subscribe(res=>{
+  let url = "http://" + localStorage.getItem('robot_ip') +":5000/loadMap";
+  this.http.post<any>(url, "test").subscribe(res=>{
   console.log(res.file);
   this.map_name = res.files;
     })
   }
 
   get_edit_map(str:any){
-      this.http.post<any>('http://192.168.1.197:5000/selectMap', str).subscribe(res=>{
+    let url = "http://" + localStorage.getItem('robot_ip') +":5000/selectMap";
+      this.http.post<any>(url, str).subscribe(res=>{
         console.log(res.message);
         alert(res);
     },err=>{

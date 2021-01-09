@@ -8,7 +8,7 @@ import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions, 
   styleUrls: ['./mapupload.component.css']
 })
 export class MapuploadComponent implements OnInit {
-  url = 'http://192.168.1.197:5000/uploadMap';
+  url = "http://" + localStorage.getItem("robot_ip") + ":5000/uploadMap";
   formData = FormData;
   files: UploadFile[];
   uploadInput: EventEmitter<UploadInput>;

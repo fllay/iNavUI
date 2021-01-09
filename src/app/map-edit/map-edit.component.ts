@@ -25,7 +25,7 @@ export class MapEditComponent implements OnInit {
  }
 
  get_img_src(){
-  var jpegUrl = "http://192.168.1.197:5000/getEditMap"
+  var jpegUrl = "http://192.168.1.44:5000/getEditMap"
   this.img_src = jpegUrl;
   console.log(this.img_src);
  }
@@ -50,7 +50,7 @@ export class MapEditComponent implements OnInit {
   ngAfterViewInit(){
     setTimeout(() =>{
      // this.get_img_src();
-    this.toDataURL('http://192.168.1.197:5000/getEditMap',(dataUrl:any)=> {
+    this.toDataURL('http://192.168.1.44:5000/getEditMap',(dataUrl:any)=> {
       console.log(dataUrl);
       this.img_file = dataUrl;
       })
