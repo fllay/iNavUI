@@ -18,3 +18,6 @@ code code .
 
 
 #=====================================================
+how to start ui application
+ go to project folder then 
+command for start app = node server.js

@@ -8,14 +8,14 @@ import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions, 
   styleUrls: ['./mapupload.component.css']
 })
 export class MapuploadComponent implements OnInit {
-  url = "http://" + localStorage.getItem("robot_ip") + ":5000/uploadMap";
+  url = "http://"+ localStorage.getItem("robot_ip") + ":5000/uploadMap";
   formData = FormData;
   files: UploadFile[];
   uploadInput: EventEmitter<UploadInput>;
   humanizeBytes: Function;
   dragOver: boolean;
   options: UploaderOptions;
- 
+  scroll:any;
   constructor(
   
   ) {

@@ -1,5 +1,8 @@
-import { Component, OnInit ,AfterViewInit,OnDestroy} from '@angular/core';
+import { Component, OnInit ,AfterViewInit,OnDestroy,ViewChild,ElementRef} from '@angular/core';
 import { Router} from '@angular/router';
+import panzoom from "panzoom";
+
+declare function view_map():any;
 
 @Component({
   selector: 'app-map3-d',
@@ -9,17 +12,18 @@ import { Router} from '@angular/router';
 export class Map3DComponent implements OnInit {
   imu_chart:any;
   blocky:any;
- 
+  view_map = view_map;
+  @ViewChild('scene', { static: false }) scene:any;
+
   constructor(
     private router: Router
-  ) { }
-
-  close_blockly(){
+  ) { 
+    this.scene = ElementRef;
   }
 
-   
+ 
   refreshPage() {
-    window.location.reload();
+    this.view_map();
   }
 
   ngOnInit(): void {

@@ -3,12 +3,20 @@
         <div id="formContent">
           <!-- Login Form -->
           <form #ipFrom>
-            <input type="text"  class="fadeIn second" name="ip" [(ngModel)]="robot_ip">
-            <input type="text"  class="fadeIn third" name="port" [(ngModel)]="robot_port" >
-            <input type="submit" class="fadeIn fourth" value="Save" (click) = "save_robot_ip()">
+            <br>
+          <div class="row">
+            <div class="col-md-3"> <a>Robot IP</a></div>
+            <div class="col-md-7"><input type="text"  class="fadeIn second" name="ip" [(ngModel)]="robot_ip"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><a>Port</a></div>
+            <div class="col-md-7"><input type="text"  class="fadeIn third" name="port" [(ngModel)]="robot_port" ></div>
+          </div>
+          <br>
           </form>
           <!-- Remind Passowrd -->
           <div id="formFooter">
+            <input type="submit" class="fadeIn fourth" value="Save" (click) = "save_robot_ip()"><br>
             <a class="underlineHover" href="#">Robot IP Address and Port</a>
           </div>
     
@@ -19,3 +27,4 @@
       </div>
     </div>
 
+  

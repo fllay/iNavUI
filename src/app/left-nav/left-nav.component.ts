@@ -1,5 +1,10 @@
-import { Component, OnInit,AfterViewInit } from '@angular/core';
-import { Router} from '@angular/router';
+import { Component, OnInit,AfterViewInit,OnDestroy } from '@angular/core';
+//import { Router} from '@angular/router';
+import { HttpClient} from '@angular/common/http';
+//import {Subject} from 'rxjs';
+declare function setWaypointBtnActivation():any;
+declare var current_position:any;
+//declare var flag:any;
 
 @Component({
   selector: 'app-left-nav',
@@ -9,38 +14,76 @@ import { Router} from '@angular/router';
 export class LeftNavComponent implements OnInit {
   joy:any;
   joy_check:any;
+  setWaypointBtnActivation = setWaypointBtnActivation;
+  robot_post = {
+      pose:{
+        pose:{
+        position:{
+        x:0,
+        y:0,
+        z:0
+        },
+        orientation:{
+        x:0,
+        y:0,
+        z:0,
+        w:0
+        }
+        }    
+       }
+     }
+
+
+
+     check_val:any;
   public blockly:any;
+
   constructor(
-    private router: Router
+    private http: HttpClient
+   
   ) { 
-  }
-  hide_joy(){
-    this.joy = document.getElementById("joy-div");
-     this.joy.style.display = "none";
-    }
-  view_joy(){
-    this.joy = document.getElementById("joy-div");
-    this.joy.style.display = "block";
-  }
-  show_blockly(){
-    this.blockly = document.getElementById("1a");
-    this.blockly.style.display="block";
-    this.router.navigateByUrl("job");
+
   }
 
-  joy_toggle(){
-    this.joy_check = document.getElementById("joy_check");
-    if(this.joy_check.checked){
-    return this.view_joy();
-    }else{
-      this.hide_joy();
-    }
+
+  setWays(){
+    this.setWaypointBtnActivation();
+  }
+
+  restart(){
+      let url = "http://"+localStorage.getItem("robot_ip")+":5000/restart";
+        this.http.get<any>(url).subscribe(res=>{
+          console.log("Get Map",res.message);
+          alert(res);
+      },err=>{
+        console.log('Error: ' + err.error);
+        console.log('Name: ' + err.name);
+        console.log('Message: ' + err.message);
+        console.log('Status: ' + err.status);
+      }
+      )
   }
 
   ngOnInit(): void {
   }
+
   ngAfterViewInit(){
-   // this.hide_joy();
+   this.check_val = setInterval(() => {
+     try {
+      let new_val = JSON.stringify(current_position);
+      let json_parse = JSON.parse(new_val);
+      if(json_parse.pose.pose.position.x != 0){
+      this.robot_post =  json_parse;
+      }
+     } catch (error) {
+       
+     }
+    //console.log(new_val);
+   }, 200);
   }
+
+ ngOnDestroy(){
+   clearInterval(this.check_val);
+ }
 
 }

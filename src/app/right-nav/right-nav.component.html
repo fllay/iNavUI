@@ -2,9 +2,9 @@
 <aside class="control-sidebar control-sidebar-dark" >
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab" (click)="load_blockly()"(click)="load_map()"><i class="material-icons">pin_drop</i></a></li>
-      <li><a href="#edit-load-map" data-toggle="tab" (click)="load_map()"> <i class="material-icons">border_color</i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab" (click) = "createjoy()"><i class="material-icons" >gamepad</i></a></li>
+      <li><a href="#control-sidebar-home-tab" data-toggle="tab" (click)="load_blockly()"><i class="material-icons">pin_drop</i></a></li>
+      <li><a href="#edit-load-map" data-toggle="tab" (click)="load_maps()"> <i class="material-icons">border_color</i></a></li>
+      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"  (click)= "createJoy()"><i class="material-icons" >gamepad</i></a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content" >
@@ -21,16 +21,16 @@
               </button>
           </div>
           <br>
-          <br>
-          <div class="span3">
+          <div class="span3 scroll">
               <table id="mapTable" data-click-to-select="true" data-single-select="true">
-                  <thead>
+                  <thead >
                       <tr>
-                          <th data-field="state" data-checkbox="true"></th>
-                          <th data-field="name">Map Name</th>
+                          <th data-field="state" data-checkbox="true" (change) = "set_check($event)"></th>
+                          <th data-field="name" >Map Name</th>
                       </tr>
                   </thead>
               </table>
+              <div id="bottom"></div>
           </div>
           <br>
           <div class="row">
@@ -39,7 +39,7 @@
               </button>
           </div>
           <br>
-          <div class="span5">
+          <div class="bottom scroll" id = "scroll">
               <table id="waypointTable" data-click-to-select="true" data-single-select="true">
                   <thead>
                       <tr>
@@ -53,16 +53,17 @@
           <br>
           <div class="row">
               <label class="switch">
-                <input type="checkbox"  id="switch_nav" onclick = "startSLAM()">
+                <input type="checkbox"  id="switch_nav" [checked] = false (click) = "init_nav($event)">
                 <span class="slider round"></span>
-              </label><label class="nav-toggle">NAV</label>
+              </label><label class="nav-toggle">NAVIGATION : {{nav_check}}</label>
           </div>
+          <br>
           <div class="row">
               <button type="button" class="btn btn-primary" onclick="sendGoal()">
                   Go
-              </button>
+              </button><br><br>
               <div id="nav_status">Satus</div>
-          </div>
+        </div>
       </div>
       </div><!-- /.tab-pane -->
       <!-- Stats tab content -->
@@ -78,15 +79,24 @@
           <canvas id="imuChart" width="200px" height="100px" style="background-color: rgb(219, 231, 231);"></canvas>
         </div-->
         <h4>Manual control</h4>
-        <div class = "from-group" style="height: 600px;">
-          <div class="GaugeMeter" id="GaugeMeter_1" data-width="20" data-total="30" data-style="Semi" data-showvalue=true></div>
+        <div class = "from-group" style="height: 300px;">
         <div id = "draggable">
             <div id="joy-div">
-             <i class="fa fa-arrows-alt"></i>
              <div id="joystick"></div>
            </div>
-          </div>
+        </div>
       </div><!-- /.tab-pane -->
+    <div class = "slidecontainer">
+       <label for="linear_speed">LINEAR</label>
+       <span> : {{linear}}</span>
+       <input type="range" min="1" max="100"  class="linear" id="linear_speed" [(ngModel)]="linear" (change)= "adjust_linear()">
+       <br>
+       <label for="linear_speed">ANGLE</label>
+       <span> : {{angle}}</span>
+        <input type="range" min="1" max="100"  class="angle" id="angle_speed" [(ngModel)]="angle" (change) = "adjust_angle()">
+     <br>
+    </div>
+
   </div>
 </div>
   </aside><!-- /.control-sidebar -->

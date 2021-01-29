@@ -1,3 +1,6 @@
 .container{
     text-align: center;
+    width:1620px;
+    height:800px;
+    overflow: scroll;
 }

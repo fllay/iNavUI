@@ -1,13 +1,5 @@
 <div class="content-wrapper">
-    <div class = "container">
-    <image-drawing 
-    [enableLoadAnotherImage]="true" 
-    [enableRemoveImage]="true"
-    [src] = "img_file"
-    outputMimeType="'image/jpeg'"
-    [drawingSizes]="{ small: 0.5, medium: 10, large: 25}"
-    (save)="save($event)"
-    (cancel)="cancel()"
-    ></image-drawing>
-</div>
+    <div style="height: 900px; width: 100%">
+        <tui-image-editor></tui-image-editor>
+    </div>
 </div>

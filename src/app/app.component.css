@@ -1,3 +1,11 @@
 .test{
     background-color:rgb(47, 250, 20);
 }
+
+.hide{
+    display:none;
+}
+
+.show{
+    display:block;
+}

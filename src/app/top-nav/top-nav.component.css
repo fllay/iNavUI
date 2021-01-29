@@ -10,6 +10,7 @@ a:hover{
 
 button{
     margin-top: 8px;  
+    margin-left: 5px;
     background-color:rgba(78, 122, 243, 0.575);
     height: 34px;
     text-align: center;
@@ -28,6 +29,10 @@ input{
     border-radius: 5px;
   
 }
+.ip{
+    width: 130px;
+}
 .port{
     width:60px;
+    margin-left: 5px;
 }

@@ -10,3 +10,7 @@ button{
     left:50px;
     z-index:+90;
 }
+
+.modal-content{
+ border-radius: 10px;
+}

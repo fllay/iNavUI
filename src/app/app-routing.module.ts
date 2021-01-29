@@ -9,8 +9,10 @@ import {HomeComponent} from './home/home.component';
 import {MapEditComponent}from './map-edit/map-edit.component';
 import {LogoutComponent} from './logout/logout.component';
 import {MapuploadComponent} from './mapupload/mapupload.component';
-
+import {MonitorComponent} from './monitor/monitor.component';
+import {ParameterComponent} from './parameter/parameter.component';
 const routes: Routes = [
+  { path: '', redirectTo: '/AppComponent', pathMatch: 'full' },
   {path:'login',component:LoginComponent},
   {path:'map3-d',component:Map3DComponent},
   {path:'job',component:JobComponent},
@@ -20,7 +22,9 @@ const routes: Routes = [
   {path:'map-edit',component:MapEditComponent},
   {path:'logout',component:LogoutComponent},
   {path:'home',component:HomeComponent},
-  {path:'mapupload',component:MapuploadComponent}
+  {path:'mapupload',component:MapuploadComponent},
+  {path:'monitor',component:MonitorComponent},
+  {path:'parameter',component:ParameterComponent}
 ];
 
 @NgModule({

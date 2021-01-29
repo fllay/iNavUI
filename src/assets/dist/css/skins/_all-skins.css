@@ -26,7 +26,7 @@
   background: rgba(0, 0, 0, 0.1);
 }
 .skin-blue .main-header .navbar .sidebar-toggle {
-  color: #fff;
+  color: rgb(68, 65, 65);
 }
 .skin-blue .main-header .navbar .sidebar-toggle:hover {
   background-color: #367fa9;
@@ -36,7 +36,7 @@
     background-color: rgba(255, 255, 255, 0.1);
   }
   .skin-blue .main-header .navbar .dropdown-menu li a {
-    color: #fff;
+    color: rgb(15, 15, 15);
   }
   .skin-blue .main-header .navbar .dropdown-menu li a:hover {
     background: #367fa9;

@@ -75,6 +75,9 @@
     color:rgb(247, 243, 243);
     background-color:#044b0e;
   }
+  .nav-font :active{
+    color:green;
+  }
   i{
       color:rgb(223, 243, 242);
       font-size:15px
@@ -86,15 +89,57 @@
 
 a:hover{
   cursor: pointer;
+  color:#2196F3;
 }
 
 
 button{
-  width:70px;
+  width:80px;
 }
 hr{
   width:80px;
 }
 .glyphicon{
   color: aliceblue;
+}
+
+.GaugeMeter {
+  position: relative;
+  margin-left:20px;
+  margin-top:10px;
+  text-Align: center;
+  overflow: hidden;
+  cursor: none;
+}
+
+.GaugeMeter span,
+.GaugeMeter B {
+  margin: 0 10%;
+  width: 80%;
+  position: absolute;
+  text-align: center;
+  display: inline-block;
+  color: rgba(0, 0, 0, .8);
+  font-weight: 100;
+  font-Family: "Open Sans", Arial;
+  overflow: hidden;
+  white-space: none;
+  text-overflow: ellipsis;
+}
+
+.GaugeMeter[data-style="Semi"] B {
+  margin: 0 10%;
+  width: 100%;
+}
+
+.GaugeMeter S,
+.GaugeMeter U {
+  text-Decoration: None;
+  font-Size: .5em;
+  opacity: .5;
+}
+
+.GaugeContainer{
+  text-align: center;
+  margin-left: 35px;
 }

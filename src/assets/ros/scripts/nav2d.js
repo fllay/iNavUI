@@ -3,6 +3,7 @@
  * @author Lars Kunze - l.kunze@cs.bham.ac.uk
  */
 
+
 var NAV2D = NAV2D || {
   REVISION : '0.3.0'
 };
@@ -163,10 +164,12 @@ NAV2D.Navigator = function(options) {
     throttle_rate : 100
   });
 
+  //++++++++++++++++++++++++++++++++++++++++++++++================================================================Get position
   poseListener.subscribe(function(pose) {
     // update the robots position on the map
     robotMarker.x = pose.position.x;
     robotMarker.y = -pose.position.y;
+
     if (!initScaleSet) {
       robotMarker.scaleX = 1.0 / stage.scaleX;
       robotMarker.scaleY = 1.0 / stage.scaleY;
@@ -178,7 +181,7 @@ NAV2D.Navigator = function(options) {
 
     robotMarker.visible = true;
   });
-
+  //++++++++++++++++++++++++++++++++++++++++++++++================================================================Get position
   if (withOrientation === false){
     // setup a double click listener (no orientation)
     this.rootObject.addEventListener('dblclick', function(event) {

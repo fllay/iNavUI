@@ -3,8 +3,6 @@
  * Setup all visualization elements when the page is loaded.
  */
 //const axios  = new axios()
-
-
 var ip = ""
 var rosConn;
 var mapTable = $('#mapTable')
@@ -20,24 +18,31 @@ var gmap_name = "Choose a map"
 var gwaypoint_name = ""
 var g_waypoints = [{
     name: "None"
-}]
-var g_pose
-var listener
+}];
+
+var lin_speed = 0.01;
+var ang_speed = 0.005;
+
+var flag = "";
+var _check_nav;
+var g_pose;
+var listener;
 var gauge_lin
 var time = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 // For drawing the lines
 var imuData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var angularVelocity = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var myChart = null
+var myChart = null;
 var colWidth = 0
 //var viewer3d = null
-var workspace = null
-var blocklyDiv = null
-var blocklyArea = null
+var workspace = null;
+var blocklyDiv = null;
+var blocklyArea = null;
 
-var isMapChoosen = false
-var isWaypointAvaliable = false
+var isMapChoosen = false;
+var isWaypointAvaliable = false;
 
+var current_position =[];
 
 function createJoystick() {
     // Check if joystick was aready created
@@ -49,7 +54,7 @@ function createJoystick() {
             zone: joystickContainer,
             position: {
                 left: 50 + '%',
-                top: 120 + 'px'
+                top: 100 + 'px'
             },
             mode: 'static',
             size: 200,
@@ -67,8 +72,8 @@ function createJoystick() {
             }
             // convert angles to radians and scale linear and angular speed
             // adjust if youwant robot to drvie faster or slower
-            var lin = Math.cos(direction / 57.29) * nipple.distance * 0.005;
-            var ang = Math.sin(direction / 57.29) * nipple.distance * 0.005;
+            var lin = Math.cos(direction / 57.29) * nipple.distance * lin_speed;//=============================================linear speed
+            var ang = Math.sin(direction / 57.29) * nipple.distance * ang_speed;//============================================Angular speed
             // nipplejs is triggering events when joystic moves each pixel
             // we need delay between consecutive messege publications to 
             // prevent system from being flooded by messages
@@ -181,16 +186,13 @@ function init_blockly() {
 
     };
 
+    $(".GaugeMeter").gaugeMeter();
 
-
-
-
-    //$(".GaugeMeter").gaugeMeter();
-
-
-
+    var mapp_selected  = localStorage.getItem("mapname");
+    $(mapp_selected).prop('checked', true)
     wpointname = document.getElementById('waypointname');
-    createJoystick();
+    
+    //createJoystick();
     loadMap();
     $('#waypointTable').bootstrapTable({
         onCheck: function (row, $element) {
@@ -201,29 +203,23 @@ function init_blockly() {
                 mapname: gmap_name
             });
 
-
-
             getPoseWaypointName.callService(getwaypointparam, function (result) {
                 g_pose = result
                 console.log(result);
             })
-
-
-
         }
     });
-
-
+     
     $('#mapTable').bootstrapTable({
         onCheck: function (row, $element) {
-            //alert(JSON.stringify(row));
-            isMapChoosen = true
-            gmap_name = row.name
+            console.log(JSON.stringify(row));
+            isMapChoosen = true;
+            gmap_name = row.name;
+            mapp_selected = row.name;
+            localStorage.setItem("mapname",row.name);
             var getwaypointparam = new ROSLIB.ServiceRequest({
                 mapname: row.name
             });
-
-
             getWaypointName.callService(getwaypointparam, function (result) {
                 console.log(result);
                 var dataSet = []
@@ -231,7 +227,6 @@ function init_blockly() {
                     g_waypoints.pop();
                 }
                 //g_waypoints.push(['none', 'NONE'])
-
                 if (result.length == 0) {
                     isWaypointAvaliable = false
                 } else {
@@ -246,24 +241,16 @@ function init_blockly() {
                     console.log(fn)
 
                 });
-
-
                 console.log(dataSet)
-
                 $('#waypointTable').bootstrapTable({
                     data: dataSet
                 })
-
                 // $('#mapTable').bootstrapTable("destroy");
                 $('#waypointTable').bootstrapTable('load', dataSet)
             })
-
             var getwaypointparam = new ROSLIB.ServiceRequest({
                 name: row.name
             });
-
-
-
             getWayPoints.callService(getwaypointparam, function (result) {
                 console.log(result);
             })
@@ -372,7 +359,6 @@ function init_blockly() {
         return code;
     };
 
-
     Blockly.Blocks['agv_init'] = {
         init: function () {
             this.appendDummyInput()
@@ -400,11 +386,6 @@ function init_blockly() {
         code = code + "rospy.init_node('patrol')\n"
         code = code + "client = actionlib.SimpleActionClient('move_base', MoveBaseAction)\n"
         code = code + "client.wait_for_server()\n"
-
-
-
-
-
         return code;
     };
 
@@ -481,11 +462,8 @@ function init_blockly() {
 
 
     Blockly.Python['move_to_preset'] = function (block) {
-
         /*var value_waypoint = Blockly.Python.valueToCode(block, 'waypoint', Blockly.Python
             .ORDER_ATOMIC);*/
-
-
         var value_waypoint = block.getFieldValue('WAYPOINT');
         // TODO: Assemble Python into code variable.
         var code = 'goal = agv.goal_pose(waypoint_db, "' + gmap_name + '" , "' +
@@ -494,8 +472,6 @@ function init_blockly() {
         var code = code + "client.wait_for_result()\n"
         return code;
     };
-
-
 
     Blockly.Blocks['rospy_loop'] = {
         init: function () {
@@ -521,13 +497,8 @@ function init_blockly() {
         var code = 'while not rospy.is_shutdown():\n' + branch;
         return code;
     };
-
-
-
-
-
-}
-//-------------------- End Doc Ready --------------------------
+  }
+//--------------------+++++++++++++++++++++++++++++++++++++++++++++++ End Doc Ready +++++++++++++++++++++++++++++++++++++++++++++++ --------------------------
 
 
 
@@ -656,12 +627,7 @@ var ros = new ROSLIB.Ros({
 });*/
 
 
-var ros_run  = ros.on('connection', function () {
-    console.log("Connected!!!!!")
-
-
-    console.log(colWidth / 12 * 8)
-    // Create the main viewer.
+function view_map(){
     viewer3d = new ROS3D.Viewer({
         divID: 'map3d',
         width: colWidth / 12 * 8,
@@ -681,7 +647,6 @@ var ros_run  = ros.on('connection', function () {
         serverName: 'tf2_web_republisher'
     });
 
-
     var laserScan = new ROS3D.LaserScan({
             ros: ros,
             topic: 'scan',
@@ -694,10 +659,8 @@ var ros_run  = ros.on('connection', function () {
         }
 
     )
-
+         
     var sn = null
-
-
     var pathDisplay = new ROS3D.Path({
         ros: ros,
         tfClient: tfClient,
@@ -719,7 +682,6 @@ var ros_run  = ros.on('connection', function () {
         topic: 'robot_pose'
 
     })
-
 
     var urdfClient = new ROS3D.UrdfClient({
         ros: ros,
@@ -781,7 +743,6 @@ var ros_run  = ros.on('connection', function () {
 
     })
 
-
     var robotWaypoints = new ROS3D.MarkerArrayClient({
         ros: ros,
         tfClient: tfClientM,
@@ -797,8 +758,6 @@ var ros_run  = ros.on('connection', function () {
         rootObject: viewer3d.selectableObjects,
 
     })
-
-
     twist = new ROSLIB.Message({
         linear: {
             x: 0,
@@ -827,17 +786,23 @@ var ros_run  = ros.on('connection', function () {
 
     });
     var odom_count = 0
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++GaugeMeter
     listener.subscribe(function (message) {
         //console.log('Received message on ' + listener.name + ': ' + message.twist.twist.linear.x);
+     current_position = message;
+     flag = "a";
+     flag = "b"
+        //current_position.y = - message;
+
         $("#GaugeMeter_1").gaugeMeter({
-            used: message.twist.twist.linear.x * 50,
+            //used: message.twist.twist.linear.x * 50,
             percent: message.twist.twist.linear.x * 50
         });
 
         //gauge_lin.set(message.twist.twist.linear.x); // set actual value
         //message.twist.twist.angular.z
         //listener.unsubscribe();
-
+        document.getElementById("speed").innerHTML = message.twist.twist.linear.x * 50
         odom_count = odom_count + 1
         if (odom_count % 50 == 0) {
         try {
@@ -862,7 +827,7 @@ var ros_run  = ros.on('connection', function () {
        
         }
     });
-
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++GaugeMeter
 
 
 
@@ -924,36 +889,51 @@ var ros_run  = ros.on('connection', function () {
 
 
     var onresize = function (e) {
+        try {
+            console.log("resizing")
+            console.log(document.getElementById("map3d").offsetWidth)
+            viewer3d.resize(document.getElementById("map3d").offsetWidth * 0.96, document
+                .getElementById(
+                    "map3d").offsetWidth * 0.96 * 3 / 4)
+    
+            var element = blocklyArea;
+            var x = 0;
+            var y = 0;
+            do {
+                x += element.offsetLeft;
+                y += element.offsetTop;
+                element = element.offsetParent;
+            } while (element);
+            // Position blocklyDiv over blocklyArea.
+            blocklyDiv.style.left = x + 'px';
+            blocklyDiv.style.top = y + 'px';
+            blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
+            blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+            Blockly.svgResize(workspace);
+        } catch (error) {
+            return;
+        }
         // Compute the absolute coordinates and dimensions of blocklyArea.
-        console.log("resizing")
-        console.log(document.getElementById("map3d").offsetWidth)
-        viewer3d.resize(document.getElementById("map3d").offsetWidth * 0.96, document
-            .getElementById(
-                "map3d").offsetWidth * 0.96 * 3 / 4)
 
-        var element = blocklyArea;
-        var x = 0;
-        var y = 0;
-        do {
-            x += element.offsetLeft;
-            y += element.offsetTop;
-            element = element.offsetParent;
-        } while (element);
-        // Position blocklyDiv over blocklyArea.
-        blocklyDiv.style.left = x + 'px';
-        blocklyDiv.style.top = y + 'px';
-        blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
-        blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
-        Blockly.svgResize(workspace);
     };
     window.addEventListener('resize', onresize, false);
     //onresize();
 
+}
+
+var ros_run  = ros.on('connection', function () {
+    console.log("Connected!!!!!")
+    console.log(colWidth / 12 * 8)
+    // Create the main viewer.
+    try {
+        view_map();
+    } catch (error) {
+        
+    }
 
 });
 
-
-
+//==============================================================================================33333333333333333333333333333333
 
 var actionClient = new ROSLIB.ActionClient({
     ros: ros,
@@ -966,12 +946,9 @@ var actionClient = new ROSLIB.ActionClient({
 function sendGoal() {
     // create a goal
 
-
     console.log("send goal")
     //console.log(pose)
     console.log(g_pose)
-
-
     var goal = new ROSLIB.Goal({
         actionClient: actionClient,
         goalMessage: {
@@ -1003,21 +980,16 @@ var getPoseSrv = new ROSLIB.Service({
     serviceType: 'agv_interface/getpost'
 })
 
-
-
-
 var startSLAMsrv = new ROSLIB.Service({
     ros: ros,
     name: '/start_slam',
     serviceType: 'agv_interface/slamsrv'
 });
 
-
 var deleteMap = new ROSLIB.Service({
     ros: ros,
     name: '/delete_map',
     serviceType: 'agv_interface/deletemap'
-
 })
 
 var deleteWaypoit = new ROSLIB.Service({
@@ -1032,14 +1004,10 @@ var onSlam = new ROSLIB.ServiceRequest({
     map_file: "map_office"
 });
 
-
-
 var offSlam = new ROSLIB.ServiceRequest({
     onezero: 0,
     map_file: "map_office"
 });
-
-
 
 var startNavSrv = new ROSLIB.Service({
     ros: ros,
@@ -1056,11 +1024,6 @@ var offNav = new ROSLIB.ServiceRequest({
     onezero: 0,
     map_file: "map_office"
 });
-
-
-
-
-
 
 
 var onMarker = new ROSLIB.ServiceRequest({
@@ -1131,28 +1094,12 @@ var saveMapSrv = new ROSLIB.Service({
 
 
 
-
-function startSLAM() {
-    if (document.getElementById('switch_slam').checked) {
-        startSLAMsrv.callService(onSlam, function (result) {
-            console.log(result);
-        })
-    } else {
-        startSLAMsrv.callService(offSlam, function (result) {
-            console.log(result);
-        })
-    }
-
-
-    console.log("Click Click")
-}
-
-
 $(function () {
     $('#switch_nav').change(function () {
-        var check_nav = $(this).prop('checked')
+        var check_nav = $(this).prop('checked');
+        _check_nav = check_nav;
+        localStorage.setItem("nav",_check_nav);
         mapname = $('#mapTable').bootstrapTable('getSelections')[0].name
-
         if (check_nav == true) {
 
             var onNav_ = new ROSLIB.ServiceRequest({
@@ -1167,7 +1114,6 @@ $(function () {
             })
             document.getElementById("switch_slam").disabled = true
             document.getElementById("save_map_btn").disabled = true
-
 
         } else {
 
@@ -1503,8 +1449,10 @@ function getPose() {
 function setWaypointBtnActivation() {
     if (!document.getElementById('waypointname').value.length) {
         document.getElementById("setwaypointbtn").disabled = true;
+        console.log("Enable set way point");
     } else {
         document.getElementById("setwaypointbtn").disabled = false;
+        console.log(" Disable set way point");
 
     }
 }
@@ -1582,7 +1530,7 @@ function getFile() {
             $("#filelist tr").click(function () {
                 selected_file = $(this).find('td:first').html();
                 console.log(selected_file);
-                document.getElementById("load-blockly-btn").disabled = false;
+              //  document.getElementById("load-blockly-btn").disabled = false;
 
             })
         }
@@ -1603,7 +1551,6 @@ function loadBlockly() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.responseType = 'json';
-
     xhr.onload = function () {
         if (xhr.status != 200) { // analyze HTTP status of the response
             console.log(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
@@ -1612,20 +1559,14 @@ function loadBlockly() {
             workspace.clear()
             var xml = Blockly.Xml.textToDom(xhr.response.content);
             Blockly.Xml.domToWorkspace(xml, workspace);
-
         }
     };
-
     var data = JSON.stringify({
-        filename: selected_file
+    filename: selected_file
     })
     xhr.send(data);
-
     console.log(selected_file)
-
-}
-
-
+    }
 
 
 $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
@@ -1647,9 +1588,14 @@ $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
         blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
         Blockly.svgResize(workspace);
     } else {
-        console.log("Fa bav")
-        console.log(document.getElementById("map3d").offsetWidth)
-        viewer3d.resize(document.getElementById("map3d").offsetWidth * 0.96, document.getElementById(
-            "map3d").offsetWidth * 3 / 4 * 0.96)
+        try {
+            console.log("Fa bav")
+            console.log(document.getElementById("map3d").offsetWidth)
+            viewer3d.resize(document.getElementById("map3d").offsetWidth * 0.96, document.getElementById(
+                "map3d").offsetWidth * 3 / 4 * 0.96)
+        } catch (error) {
+            return;
+        }
+
     }
 })

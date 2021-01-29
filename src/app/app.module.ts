@@ -20,6 +20,9 @@ import { LogoutComponent } from './logout/logout.component';
 import { FileSaverModule } from 'ngx-filesaver';
 import { MapuploadComponent } from './mapupload/mapupload.component';
 import { NgxUploaderModule } from 'ngx-uploader';
+import { MonitorComponent } from './monitor/monitor.component';
+import { ParameterComponent } from './parameter/parameter.component';
+import { ToastUiImageEditorModule } from "ngx-tui-image-editor";
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { NgxUploaderModule } from 'ngx-uploader';
     HomeComponent,
     MapEditComponent,
     LogoutComponent,
-    MapuploadComponent
+    MapuploadComponent,
+    MonitorComponent,
+    ParameterComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,8 @@ import { NgxUploaderModule } from 'ngx-uploader';
     ImageDrawingModule,
     BrowserAnimationsModule,
     FileSaverModule,
-    NgxUploaderModule
+    NgxUploaderModule,
+    ToastUiImageEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

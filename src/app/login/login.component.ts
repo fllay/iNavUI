@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   }else{
     if(this.username === "admin" && this.password ==="admin2020"){
       localStorage.setItem('login','True');
-      this.router.navigateByUrl("home");
+      window.location.replace('/');
     }else{
       localStorage.setItem('login','False');
       return;
